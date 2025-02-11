@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Buddy</title>
+    <link rel="icon" type="image" href="images/budgetBuddy logo.png">
+    <link rel="stylesheet" href="expenseMain.css">
+    <script src="expenseMain.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="profile-section">
+            <span id="welcome-user">Hi 👋, User</span>
+            <img src="images\profile.png" alt="Profile" class="profile-pic">
+            <button id="logout-button">Logout</button>
+        </div> 
+        <div class="container">
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <img src="light_theme-removebg-preview.png" id="theme-icon" alt="Toggle Theme">
+            </button>
+            <div class="header">
+                <img src="images\headingBB.png" alt="Logo" class="logo" />
+                
+              </div>
+            <img align="left" src="images\craazy.png" width="50px" alt="user">
+            <h3>You have been logged in as a user with sample data generated to show you how things might look like. All
+                the changes you make will only be stored locally on your device.</h3>
+        </div>
+    </header>
+
+    <main>
+        <section class="form-section">
+            <div class="container">
+                <h2>Add New Expense</h2>
+                <form id="expense-form">
+                    <label for="description">Description:</label>
+                    <input type="text" id="description">
+                    <label for="date">Date:</label>
+                    <input type="date" id="date">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="">Select a category</option>
+                        <option value="Food">Food</option>
+                        <option value="Transport">Transport</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <button type="reset" onclick="addExpense()">Add Expense</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="expense-list">
+            <div class="container">
+                <h2>Expense List</h2>
+                <table id="expense-table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Category</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <button onclick="exportToPDF()">Export to PDF</button>
+                <button onclick="exportToExcel()">Export to Excel</button>
+            </div>
+        </section>
+
+        <section class="chart-section">
+            <div class="container">
+                <h2>Spending Analysis</h2>
+                <div class="chart-container">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="goal-section">
+            <div class="container">
+                <h2>Set Spending Goal</h2>
+                <label for="goalAmount">Goal Amount:</label>
+                <input type="number" id="goalAmount">
+                <button onclick="setGoal()">Set Goal</button>
+                <p id="goalStatus"></p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>© 2024 Budget Buddy. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+</body>
+
+</html>

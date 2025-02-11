@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Buddy - Expense Tracker</title>
+  <link rel="icon" type="image/png" href="images\budgetBuddy logo.png" />
+  <link rel="stylesheet" href="index.css" />
+
+</head>
+
+<body>
+
+  <header class="header sticky">
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="images/budgetBuddy logo.png" alt="Logo" class="logo" />
+        <h1 class="heading">Budget Buddy</h1>
+      </div>
+      <nav class="navbar">
+        <ul class="navbar-list">
+          <li><a class="navbar-link" href="#home">Home</a></li>
+          <li><a class="navbar-link" href="Aboutus.html">About Us</a></li>
+          <li><a class="navbar-link" href="#feature">Features</a></li>
+          <li><a class="navbar-link" href="https://github.com/its-vaibhav34">Github</a></li>
+          <li><a class="navbar-link" href="#feedback">Feedback</a></li>
+          <li>
+            <form action="signin.html">
+              <button class="btn">Track Now</button>
+            </form>
+          </li>
+        </ul>
+      </nav>
+      <button class="theme-toggle" onclick="toggleTheme()">
+        <img src="light_theme-removebg-preview.png" id="theme-icon" alt="Toggle Theme">
+      </button>
+    </div>
+    <div class="mobile-navbar-btn">
+      <ion-icon name="menu-outline" class="mobile-nav-icon"></ion-icon>
+      <ion-icon name="close-outline" class="mobile-nav-icon"></ion-icon>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="section-hero" id="home">
+    <div class="hero-leftside">
+      <h1>Track your Expenses to Save Money</h1>
+      <p>
+        Track your income and categorize your expenses. Create a budget to
+        allocate funds and review it regularly to stay on top of your
+        finances.
+      </p>
+      <div class="button-group">
+        <img src="images\google-play.png" alt="Playstore" class="playstore" />
+        <img src="images\app-store.png" alt="applestore" class="playstore" />
+      </div>
+    </div>
+    <div class="hero-rightside">
+      <img src="images\lady_working.svg" alt="heroimg" />
+    </div>
+  </section>
+
+  <section class="section-feature" id="feature">
+    <div class="feature-leftside">
+      <img src="images\use_anytime.svg" alt="heroimg" />
+    </div>
+    <div class="feature-rightside">
+      <h2>Features</h2>
+      <div class="features-container">
+        <ul class="features-list">
+          <li>Track Expenses Easily</li>
+          <li>View Detailed Transaction History</li>
+          <li>Responsive Design for All Devices</li>
+          <li>Simple Login and Signup Process</li>
+          <li>Easily Download or Print History</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Section -->
+  <section class="section-feedback" id="feedback">
+    <h1>Feedback Form</h1>
+    <form id="emailForm">
+      <textarea id="message" name="message" rows="4" cols="50"
+        placeholder="I value your input! Please type your feedback in the space provided below. This form will send your comments directly to me via email."></textarea><br><br>
+      <button class="send" type="button">Send Message</button>
+    </form>
+    <!-- Add the missing status message element -->
+    <p id="statusMessage"></p>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2024 Budget Buddy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script
+  type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+></script>>
+  <script src="index.js"></script>
+  <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+</body>
+
+</html>

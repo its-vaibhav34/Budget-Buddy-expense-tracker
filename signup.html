@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up System</title>
+  <link rel="stylesheet" href="signup.css">
+  <link rel="icon" type="image" href="budgetBuddy logo.png">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script src="signup.js" defer></script>
+</head>
+<body>
+  <div class="signup-container">
+    <div class="signup-form">
+      <div class="logo">
+        <img src="budgetBuddy logo.png" alt="System Logo">
+      </div>
+      <h2>Create Your Account</h2>
+      <p>Sign up by entering the information below</p>
+      <form id="signupForm">
+        
+        <div class="input-group">
+          
+          <input type="text" id="username" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          
+          <input type="email" id="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          
+          <input type="password" id="password" placeholder="Password" required>
+          <span onclick="togglePassword()" class="toggle-password">👁️</span>
+        </div>
+        <div class="input-group">
+          
+          <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+          <span onclick="toggleConfirmPassword()" class="toggle-password">👁️</span>
+        </div>
+        <!-- Google reCAPTCHA Widget -->
+        <div class="g-recaptcha" data-sitekey="6LcV2YIqAAAAAHCB66npOag_6IkMoDB7PTpHaItI"></div>
+        <button type="submit">Sign Up</button>
+        <p class="signin">Already have an account? <a href="https://its-vaibhav34.github.io/Budget-Buddy-expense-tracker-/">Sign in</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

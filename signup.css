@@ -1,0 +1,273 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Signup Container */
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: url("greenBG.jpg") no-repeat center center; /* Add background image */
+  background-size: cover; /* Make the background image cover the entire container */
+  position: relative;
+  overflow: hidden;
+  padding: 1.25rem; /* Padding for smaller screens */
+  flex-wrap: wrap; /* Allow form and overlay to stack on smaller screens */
+}
+
+/* Design Overlay */
+.design-overlay {
+  position: absolute;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #4caf50, #148c20);
+  clip-path: ellipse(75% 100% at 50% 50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* Signup Form */
+.signup-form {
+  background: #fff;
+  padding: 2.5rem;
+  width: 31.25rem;
+  max-width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  text-align: center;
+  margin-right: 3.125rem;
+  transition: width 0.3s ease, margin 0.3s ease;
+}
+
+.logo img {
+  width: 7.5rem;
+  height: auto;
+  margin-bottom: 1.25rem;
+}
+
+h2 {
+  color: #4a4a4a;
+  font-size: 1.375rem;
+  margin-bottom: 0.625rem;
+}
+
+p {
+  color: #777;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem 0.9375rem 0.75rem 3.75rem; /* Adjust left padding to match icon position */
+  border: 0.0625rem solid #ddd;
+  border-radius: 1.5625rem;
+  font-size: 0.875rem;
+  outline: none;
+  background: #f7f7f7;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+
+.input-group input::placeholder {
+  color: #aaa;
+  font-weight: 500;
+  margin-left: 0; /* Maintain a small gap between icon and placeholder text */
+}
+
+.input-group {
+  position: relative;
+  display: grid;
+  padding: 0 0.5625rem;
+  align-items: center;
+  margin-bottom: 0.9375rem;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 0.75rem 0.9375rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 1.5625rem;
+  font-size: 0.875rem;
+  outline: none;
+  background: #f7f7f7;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.1);
+}
+
+.toggle-password {
+  position: absolute;
+  right: 0.9375rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.125rem;
+  color: #aaa;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #2ecc71;
+  border: none;
+  border-radius: 1.5625rem;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #146716;
+}
+
+.signin {
+  font-size: 0.75rem;
+  color: #777;
+  margin-top: 1.25rem;
+}
+
+.signin a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+.signin a:hover {
+  text-decoration: underline;
+  color: #146716;
+}
+
+/* Responsive Styles */
+@media (max-width: 64rem) {
+  .signup-container {
+    flex-direction: column;
+    padding: 1.25rem;
+  }
+
+  .design-overlay {
+    width: 60%;
+    clip-path: ellipse(85% 100% at 50% 50%);
+  }
+
+  .signup-form {
+    width: 90%;
+    margin-right: 0; /* Center form */
+  }
+}
+
+@media (max-width: 48rem) {
+  .signup-container {
+    flex-direction: column;
+    padding: 0.625rem;
+  }
+
+  .design-overlay {
+    width: 70%;
+    clip-path: ellipse(100% 100% at 50% 50%);
+  }
+
+  .signup-form {
+    width: 90%; /* Use more available space */
+    padding: 1.875rem; /* Reduce padding */
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    padding: 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.875rem;
+    padding: 0.625rem;
+  }
+
+  .logo img {
+    width: 6.25rem; /* Reduce logo size */
+  }
+}
+
+@media (max-width: 30rem) {
+  .signup-container {
+    padding: 0.3125rem;
+  }
+
+  .design-overlay {
+    display: none; /* Hide overlay on very small screens */
+  }
+
+  .signup-form {
+    width: 95%;
+    padding: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="email"] {
+    padding: 0.5rem;
+    font-size: 0.75rem;
+  }
+
+  button[type="submit"] {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+  }
+
+  .logo img {
+    width: 5rem; /* Further reduce logo size */
+  }
+}
+
+/* Responsive for Google reCAPTCHA */
+.g-recaptcha {
+  margin-right: 3.125rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* For very small screens like 264px wide */
+@media (max-width: 18.75rem) {
+  .g-recaptcha {
+    transform: scale(0.7); /* Scale down the reCAPTCHA widget */
+    transform-origin: 0 0;
+  }
+}
+
+/* For small screens like phones */
+@media (max-width: 37.5rem) {
+  .g-recaptcha {
+    transform: scale(0.8); /* Slightly reduce reCAPTCHA size */
+    transform-origin: 0 0;
+  }
+}
+
+/* For medium screens like tablets */
+@media (max-width: 64rem) {
+  .g-recaptcha {
+    transform: scale(0.9); /* Adjust reCAPTCHA size */
+    transform-origin: 0 0;
+  }
+}

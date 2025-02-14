@@ -125,7 +125,7 @@ button[type="submit"]:hover {
 }
 
 .social-login button {
-  width: 2.5rem;
+  width: 1rem;
   height: 2.5rem;
   border-radius: 50%;
   border: none;
@@ -144,8 +144,9 @@ button[type="submit"]:hover {
   width: 3.125rem;
 }
 
-.google img {
+#google-sign-in-btn img{
   width: 1.875rem;
+  transform: translateY(9px);
 }
 
 .separator {

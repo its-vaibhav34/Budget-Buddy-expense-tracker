@@ -30,18 +30,24 @@ document.addEventListener('DOMContentLoaded', function () {
   // Google OAuth 2.0 Authentication
   const googleSignInButton = document.getElementById("google-sign-in-btn");
 
-  googleSignInButton.addEventListener("click", () => {
-    const clientId = "1092971539002-7o0ncldc7f7pgar78tshtalsu32uebio.apps.googleusercontent.com"; // Replace with your Google OAuth Client ID
-    const redirectUri = "http://127.0.0.1:5501/expenseMain.html"; // Must match exactly
+googleSignInButton.addEventListener("click", () => {
+  const clientId = "1092971539002-7o0ncldc7f7pgar78tshtalsu32uebio.apps.googleusercontent.com"; // Replace with your Google OAuth Client ID
 
-    const scope = "email profile openid";
-    const responseType = "code";  // Change from "token" to "code"
+  // Detect if running on localhost or GitHub Pages
+  const isLocalhost = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
 
+  // Set the correct redirect URI
+  const redirectUri = isLocalhost
+    ? "http://127.0.0.1:5501/expenseMain.html"  // Local development
+    : "https://its-vaibhav34.github.io/Budget-Buddy-expense-tracker/expenseMain.html"; // GitHub Pages
 
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
+  const scope = "email profile openid";
+  const responseType = "code"; // Authorization code flow
 
-    window.location.href = authUrl;
-  });
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scope)}&response_type=${responseType}`;
+
+  window.location.href = authUrl;
+});
 
   // Function to get Google OAuth access token
   function getAccessToken() {

@@ -32,9 +32,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
   googleSignInButton.addEventListener("click", () => {
     const clientId = "1092971539002-7o0ncldc7f7pgar78tshtalsu32uebio.apps.googleusercontent.com"; // Replace with your Google OAuth Client ID
-    const redirectUri = "http://127.0.0.1:5501"; // Change to your deployed URL when hosting
+    const redirectUri = "http://127.0.0.1:5501/expenseMain.html"; // Must match exactly
+
     const scope = "email profile openid";
-    const responseType = "token";
+    const responseType = "code";  // Change from "token" to "code"
+
 
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}`;
 

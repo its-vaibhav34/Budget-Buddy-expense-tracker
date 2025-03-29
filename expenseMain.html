@@ -4,105 +4,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Budget Buddy</title>
+    <title>Budget Buddy | Personal Finance Tracker</title>
     <link rel="icon" type="image" href="images/budgetBuddy logo.png">
     <link rel="stylesheet" href="expenseMain.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="expenseMain.js" defer></script>
 </head>
 
 <body>
-    <header>
-        <div class="profile-section">
-            <span id="welcome-user">Hi 👋, User</span>
-            <img src="images\profile.png" alt="Profile" class="profile-pic">
-            <button id="logout-button">Logout</button>
-        </div> 
-        <div class="container">
-            <button class="theme-toggle" onclick="toggleTheme()">
-                <img src="light_theme-removebg-preview.png" id="theme-icon" alt="Toggle Theme">
-            </button>
-            <div class="header">
-                <img src="images\headingBB.png" alt="Logo" class="logo" />
+    <div class="app-container">
+        <header>
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="images/headingBB.png" alt="Budget Buddy Logo" class="logo" />
+                </div>
                 
-              </div>
-            <img align="left" src="images\craazy.png" width="50px" alt="user">
-            <h3>You have been logged in as a user with sample data generated to show you how things might look like. All
-                the changes you make will only be stored locally on your device.</h3>
-        </div>
-    </header>
-
-    <main>
-        <section class="form-section">
-            <div class="container">
-                <h2>Add New Expense</h2>
-                <form id="expense-form">
-                    <label for="description">Description:</label>
-                    <input type="text" id="description">
-                    <label for="date">Date:</label>
-                    <input type="date" id="date">
-                    <label for="amount">Amount:</label>
-                    <input type="number" id="amount">
-                    <label for="category">Category:</label>
-                    <select id="category">
-                        <option value="">Select a category</option>
-                        <option value="Food">Food</option>
-                        <option value="Transport">Transport</option>
-                        <option value="Entertainment">Entertainment</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <button type="reset" onclick="addExpense()">Add Expense</button>
-                </form>
-            </div>
-        </section>
-
-        <section class="expense-list">
-            <div class="container">
-                <h2>Expense List</h2>
-                <table id="expense-table">
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th>Date</th>
-                            <th>Amount</th>
-                            <th>Category</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-                <button onclick="exportToPDF()">Export to PDF</button>
-                <button onclick="exportToExcel()">Export to Excel</button>
-            </div>
-        </section>
-
-        <section class="chart-section">
-            <div class="container">
-                <h2>Spending Analysis</h2>
-                <div class="chart-container">
-                    <canvas id="expenseChart"></canvas>
+                <div class="header-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()">
+                        <img src="light_theme-removebg-preview.png" id="theme-icon" alt="Toggle Theme">
+                    </button>
+                    <div class="profile-section">
+                        <span id="welcome-user">Hi 👋, User</span>
+                        <div class="profile-dropdown">
+                            <img src="images/profile.png" alt="Profile" class="profile-pic" id="profile-pic">
+                            <div class="dropdown-content" id="profile-dropdown">
+                                <a href="#" id="edit-profile">Edit Profile</a>
+                                <a href="#" id="settings">Settings</a>
+                                <a href="#" id="logout-button">Logout</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section class="goal-section">
-            <div class="container">
-                <h2>Set Spending Goal</h2>
-                <label for="goalAmount">Goal Amount:</label>
-                <input type="number" id="goalAmount">
-                <button onclick="setGoal()">Set Goal</button>
-                <p id="goalStatus"></p>
+            
+            <div class="notification-banner">
+                <img src="images/craazy.png" width="30px" alt="info">
+                <p>You have been logged in as a user with sample data. All changes will be stored locally on your device.</p>
+                <button id="close-banner"><i class="fas fa-times"></i></button>
             </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container">
-            <p>© 2024 Budget Buddy. All rights reserved.</p>
+        </header>
+
+        <div class="dashboard">
+            <div class="summary-cards">
+                <div class="summary-card total-expenses">
+                    <div class="card-icon"><i class="fas fa-wallet"></i></div>
+                    <div class="card-content">
+                        <h3>Total Expenses</h3>
+                        <p id="total-expense-amount">₹0.00</p>
+                    </div>
+                </div>
+                <div class="summary-card monthly-budget">
+                    <div class="card-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="card-content">
+                        <h3>Monthly Budget</h3>
+                        <p id="monthly-budget-amount">₹0.00</p>
+                    </div>
+                </div>
+                <div class="summary-card remaining-budget">
+                    <div class="card-icon"><i class="fas fa-coins"></i></div>
+                    <div class="card-content">
+                        <h3>Remaining</h3>
+                        <p id="remaining-amount">₹0.00</p>
+                    </div>
+                </div>
+                <div class="summary-card top-category">
+                    <div class="card-icon"><i class="fas fa-tag"></i></div>
+                    <div class="card-content">
+                        <h3>Top Category</h3>
+                        <p id="top-category-name">None</p>
+                    </div>
+                </div>
+            </div>
+
+            <main>
+                <section class="form-section">
+                    <div class="container">
+                        <h2><i class="fas fa-plus-circle"></i> Add New Expense</h2>
+                        <form id="expense-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="description"><i class="fas fa-file-alt"></i> Description:</label>
+                                    <input type="text" id="description" placeholder="What did you spend on?">
+                                </div>
+                                <div class="form-group">
+                                    <label for="date"><i class="fas fa-calendar-alt"></i> Date:</label>
+                                    <input type="date" id="date">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="amount"><i class="fas fa-rupee-sign"></i> Amount:</label>
+                                    <input type="number" id="amount" placeholder="0.00">
+                                </div>
+                                <div class="form-group">
+                                    <label for="category"><i class="fas fa-tags"></i> Category:</label>
+                                    <select id="category">
+                                        <option value="">Select a category</option>
+                                        <option value="Food">Food</option>
+                                        <option value="Transport">Transport</option>
+                                        <option value="Entertainment">Entertainment</option>
+                                        <option value="Shopping">Shopping</option>
+                                        <option value="Utilities">Utilities</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="payment-method"><i class="fas fa-credit-card"></i> Payment Method:</label>
+                                    <select id="payment-method">
+                                        <option value="">Select payment method</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Debit Card">Debit Card</option>
+                                        <option value="UPI">UPI</option>
+                                        <option value="Bank Transfer">Bank Transfer</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="notes"><i class="fas fa-sticky-note"></i> Notes:</label>
+                                    <input type="text" id="notes" placeholder="Additional details (optional)">
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" id="add-expense-btn" class="primary-button">Add Expense</button>
+                                <button type="button" id="clear-form-btn" class="secondary-button">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <div class="main-content">
+                    <section class="expense-list">
+                        <div class="container">
+                            <div class="section-header">
+                                <h2><i class="fas fa-list"></i> Expense List</h2>
+                                <div class="filter-controls">
+                                    <div class="search-box">
+                                        <input type="text" id="search-expenses" placeholder="Search expenses...">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <select id="filter-category">
+                                        <option value="">All Categories</option>
+                                        <option value="Food">Food</option>
+                                        <option value="Transport">Transport</option>
+                                        <option value="Entertainment">Entertainment</option>
+                                        <option value="Shopping">Shopping</option>
+                                        <option value="Utilities">Utilities</option>
+                                        <option value="Health">Health</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <select id="sort-expenses">
+                                        <option value="date-desc">Date (Newest)</option>
+                                        <option value="date-asc">Date (Oldest)</option>
+                                        <option value="amount-desc">Amount (High to Low)</option>
+                                        <option value="amount-asc">Amount (Low to High)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table id="expense-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Category</th>
+                                            <th>Payment</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                            <div class="expense-actions">
+                                <button onclick="exportToPDF()" class="action-button"><i class="fas fa-file-pdf"></i> Export to PDF</button>
+                                <button onclick="exportToExcel()" class="action-button"><i class="fas fa-file-excel"></i> Export to Excel</button>
+                                <button id="delete-all-btn" class="action-button danger"><i class="fas fa-trash-alt"></i> Delete All</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="analytics-container">
+                        <section class="chart-section">
+                            <div class="container">
+                                <h2><i class="fas fa-chart-pie"></i> Spending Analysis</h2>
+                                <div class="chart-tabs">
+                                    <button class="chart-tab active" data-chart="pie">Category Breakdown</button>
+                                    <button class="chart-tab" data-chart="bar">Monthly Trend</button>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="expenseChart"></canvas>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="goal-section">
+                            <div class="container">
+                                <h2><i class="fas fa-bullseye"></i> Budget Goals</h2>
+                                <div class="goal-form">
+                                    <div class="form-group">
+                                        <label for="goalAmount"><i class="fas fa-rupee-sign"></i> Monthly Budget:</label>
+                                        <input type="number" id="goalAmount" placeholder="Set your monthly budget">
+                                    </div>
+                                    <button onclick="setGoal()" class="primary-button">Set Budget</button>
+                                </div>
+                                <div class="goal-progress">
+                                    <p id="goalStatus">Set a monthly budget to track your spending.</p>
+                                    <div class="progress-bar-container">
+                                        <div class="progress-bar" id="goal-progress-bar"></div>
+                                    </div>
+                                    <p id="goal-percentage">0%</p>
+                                </div>
+                                <div class="category-budgets">
+                                    <h3>Category Budgets</h3>
+                                    <div class="category-budget-form">
+                                        <select id="budget-category">
+                                            <option value="">Select Category</option>
+                                            <option value="Food">Food</option>
+                                            <option value="Transport">Transport</option>
+                                            <option value="Entertainment">Entertainment</option>
+                                            <option value="Shopping">Shopping</option>
+                                            <option value="Utilities">Utilities</option>
+                                            <option value="Health">Health</option>
+                                            <option value="Education">Education</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <input type="number" id="category-budget-amount" placeholder="Budget amount">
+                                        <button onclick="setCategoryBudget()" class="secondary-button">Set</button>
+                                    </div>
+                                    <div id="category-budgets-list"></div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </main>
         </div>
-    </footer>
+
+        <!-- Modals -->
+        <div id="edit-profile-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Edit Profile</h2>
+                <div class="profile-edit-form">
+                    <div class="avatar-upload">
+                        <img id="avatar-preview" src="images/profile.png" alt="Avatar">
+                        <label for="avatar-upload" class="upload-button">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" placeholder="Enter your username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <button id="save-profile" class="primary-button">Save Changes</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="confirm-delete-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Confirm Delete</h2>
+                <p>Are you sure you want to delete all expenses? This action cannot be undone.</p>
+                <div class="modal-actions">
+                    <button id="confirm-delete-btn" class="danger-button">Delete All</button>
+                    <button id="cancel-delete-btn" class="secondary-button">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/budgetBuddy logo.png" alt="Budget Buddy" height="40">
+                    <p>Budget Buddy</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">About</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Budget Buddy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer> -->
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-
 </body>
 
 </html>
